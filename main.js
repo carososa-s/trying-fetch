@@ -16,7 +16,6 @@ async function getData() {
   }
     )
     .catch(error => console.log("Este es el error => " + error));
-    
     printBySelection($form);
     
 }
