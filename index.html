@@ -17,15 +17,26 @@
     </header>
     <main id="main">
         <h1 class="text-center">Studio Ghibli Movies</h1>
-        <form id="form" class="mb-2">
-            <span>Order by:</span>
-            <input type="radio" class="btn-check" name="options" id="release_date" autocomplete="off">
-            <label class="btn btn-secondary" for="release_date">Year</label>
-            <input type="radio" class="btn-check" name="options" id="running_time" autocomplete="off">
-            <label class="btn btn-secondary" for="running_time">Duration</label>
-            <input type="radio" class="btn-check" name="options" id="title" autocomplete="off">
-            <label class="btn btn-secondary" for="title">Name</label>
-        </form>
+        <div class="d-flex justify-content-center">
+
+            <form id="form" class="mb-2">
+                <span>Order by:</span>
+                <input type="radio" class="btn-check" name="options" id="release_date" autocomplete="off">
+                <label class="btn btn-secondary" for="release_date">Year</label>
+                <input type="radio" class="btn-check" name="options" id="running_time" autocomplete="off">
+                <label class="btn btn-secondary" for="running_time">Duration</label>
+                <input type="radio" class="btn-check" name="options" id="title" autocomplete="off">
+                <label class="btn btn-secondary" for="title">Name</label>
+            </form>
+            <form class="d-flex" role="search" id="search">
+                <input class="form-control me-2" type="search" placeholder="Search title" aria-label="Search" href="#"
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                <ul class="dropdown-menu" id="list-movies">
+                    
+                </ul>
+            </form>
+        </div>
         <div id="container-movies" class="row d-flex justify-content-center">
         </div>
     </main>
