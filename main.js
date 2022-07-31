@@ -1,10 +1,12 @@
 let $movies = document.querySelector("#container-movies");
 let $form = document.querySelector("#form");
-let $search = document.querySelector("#search");
-let $listMovies = document.querySelector("#list-movies");
+let searchs = document.querySelector("#search");
+let listMovies = document.querySelector("#list-movies");
 let movies;
 let array;
 let property;
+let searched;
+let filtered = [];
 
 let titles;
 getData();
@@ -22,35 +24,45 @@ async function getData() {
     .catch(error => console.log("Este es el error => " + error));
   printBySelection($form);
   getTitles(movies);
-  search($search, titles);
+  search();
 }
 
 
-function makeListWithMatches(list, condition) {
-  $listMovies.innerHTML = "";
-  list.forEach(movie => {
-    if (condition.test(movie)) {
-      console.log(movie)
+function makeListWithMatches() {
+  listMovies.innerHTML = "";
+  console.log(searched)
+  titles.forEach(movie => {
+    if (movie.includes(searched)) {
       let li = document.createElement("li");
       li.innerHTML = '<a class="dropdown-item" href="#">' + movie + '</a>';
-
-      $listMovies.append(li);
+      listMovies.append(li);
     }
+
+
   })
 }
 
-function search(element, list) {
-  let searched = /howl/gi;
-  element.addEventListener("keypress", (event) => {
-    searched = new RegExp(event.target.value, "gi");
-    console.log(searched);
-    makeListWithMatches(list, searched);
+function search() {
+  searchs.addEventListener("keyup", (event) => {
+    searched = event.target.value;
+    makeListWithMatches();
+    filterMovies()
+    console.log(filtered)
+    printMovies(filtered);
   })
 
+}
+
+function filterMovies() {
+  filtered = movies.map(ele => {
+    if(ele.title.includes(searched)) {
+      return ele;
+    }
+  } )
 }
 
 function getTitles(data) {
-  titles = data.map(movie => movie.title);
+  titles = data.map(movie => (movie.title).toLowerCase());
   console.log(titles);
 }
 
